@@ -2,6 +2,9 @@ package com.fabrick.demo.dto.bonifico;
 
 import java.math.BigDecimal;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -9,9 +12,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor 
-public class Transfer {
+public class Bonifico {
 	
     @JsonProperty(value = "accountId")
+    @Valid
+    @NotNull
 	private Creditor creditor;
     
     @JsonProperty(value = "accountId")
@@ -21,12 +26,15 @@ public class Transfer {
 	private String uri;
     
     @JsonProperty(value = "accountId")
+    @NotNull
 	private String description;
 	
 	@JsonProperty(value = "accountId")
+	@NotNull
 	private BigDecimal amount;
 	
 	@JsonProperty(value = "accountId")
+	@NotNull
 	private String currency;
 	
 	@JsonProperty(value = "accountId")
@@ -42,5 +50,6 @@ public class Transfer {
 	private String feeAccountId;
 	
 	@JsonProperty(value = "accountId")
+	@Valid
 	private TaxRelief taxRelief;
 }

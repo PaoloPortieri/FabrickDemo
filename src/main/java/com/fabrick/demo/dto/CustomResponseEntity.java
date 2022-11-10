@@ -2,8 +2,13 @@ package com.fabrick.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class CustomResponseEntity<T> {
 
     @JsonProperty(value = "status")

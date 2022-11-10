@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor 
 public class BonificoRequest {
-
+	
     @JsonProperty(value = "creditor")
     private Creditor creditor;
     
