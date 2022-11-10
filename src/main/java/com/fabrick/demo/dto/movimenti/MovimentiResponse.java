@@ -1,4 +1,4 @@
-package com.fabrick.demo.dto;
+package com.fabrick.demo.dto.movimenti;
 
 import java.util.List;
 
@@ -9,6 +9,6 @@ public class MovimentiResponse {
 
 	@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     @JsonProperty(value = "list")
-	private List<MovimentoResponse> movimentoResponse;
+	private List<Movimento> movimentoResponse;
 	
 }

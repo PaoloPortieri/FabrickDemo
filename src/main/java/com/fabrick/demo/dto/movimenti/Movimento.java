@@ -1,10 +1,10 @@
-package com.fabrick.demo.dto;
+package com.fabrick.demo.dto.movimenti;
 
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MovimentoResponse {
+public class Movimento {
 	
 
 /*
@@ -34,7 +34,7 @@ public class MovimentoResponse {
 	@JsonProperty(value = "valueDate")
 	private String  valueDate;
 	@JsonProperty(value = "type")
-	private MovimentoTypeResponse  type;
+	private MovimentoType  type;
 	@JsonProperty(value = "amount")
 	private int  amount;
 	@JsonProperty(value = "currency")
@@ -70,7 +70,7 @@ public class MovimentoResponse {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MovimentoResponse other = (MovimentoResponse) obj;
+		Movimento other = (Movimento) obj;
 		return Objects.equals(accountingDate, other.accountingDate) && amount == other.amount
 				&& Objects.equals(currency, other.currency) && Objects.equals(description, other.description)
 				&& Objects.equals(operationId, other.operationId) && Objects.equals(transactionId, other.transactionId)
@@ -109,11 +109,11 @@ public class MovimentoResponse {
 		this.valueDate = valueDate;
 	}
 
-	public MovimentoTypeResponse getType() {
+	public MovimentoType getType() {
 		return type;
 	}
 
-	public void setType(MovimentoTypeResponse type) {
+	public void setType(MovimentoType type) {
 		this.type = type;
 	}
 

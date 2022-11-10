@@ -2,7 +2,8 @@ package com.fabrick.demo.controller;
 
 
 import com.fabrick.demo.dto.CustomResponseEntity;
-import com.fabrick.demo.dto.SaldoResponse;
+import com.fabrick.demo.dto.saldo.SaldoResponse;
+
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

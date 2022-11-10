@@ -1,4 +1,4 @@
-package com.fabrick.demo.dto;
+package com.fabrick.demo.dto.movimenti;
 
 import java.util.Objects;
 

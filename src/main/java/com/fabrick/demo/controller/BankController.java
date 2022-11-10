@@ -1,11 +1,12 @@
 package com.fabrick.demo.controller;
 
-import com.fabrick.demo.dto.BonificoRequest;
-import com.fabrick.demo.dto.BonificoResponse;
 import com.fabrick.demo.dto.CustomResponseEntity;
-import com.fabrick.demo.dto.MovimentiResponse;
-import com.fabrick.demo.dto.MovimentoResponse;
-import com.fabrick.demo.dto.SaldoResponse;
+import com.fabrick.demo.dto.bonifico.BonificoRequest;
+import com.fabrick.demo.dto.bonifico.BonificoResponse;
+import com.fabrick.demo.dto.bonifico.BonificoRequest;
+import com.fabrick.demo.dto.movimenti.MovimentiResponse;
+import com.fabrick.demo.dto.movimenti.Movimento;
+import com.fabrick.demo.dto.saldo.SaldoResponse;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,14 +63,13 @@ public class BankController {
 
     }
     
-    @GetMapping("/bonifico")
-    public ResponseEntity<CustomResponseEntity<BonificoResponse>> getBonifico() {
+    @PostMapping("/bonifico")
+    public ResponseEntity<CustomResponseEntity<BonificoResponse>> getBonifico(BonificoRequest body) {
     	LOG.info("/bonifico endpoint START, forwarding call to the following url: {}", movimentiUrl);
 
         HttpHeaders headers = new HttpHeaders();
         // set additional headers here other than from the defaults ones already in RestTemplateConfiguration
 
-        BonificoRequest body = new BonificoRequest();
         HttpEntity<?> entity = new HttpEntity<BonificoRequest>(body, headers);
 
         ResponseEntity<CustomResponseEntity<BonificoResponse>> response = restTemplate.exchange(
