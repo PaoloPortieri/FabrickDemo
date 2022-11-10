@@ -1,11 +1,11 @@
-package com.example.demo.controller;
+package com.fabrick.demo.controller;
 
-import com.example.demo.dto.BonificoRequest;
-import com.example.demo.dto.BonificoResponse;
-import com.example.demo.dto.CustomResponseEntity;
-import com.example.demo.dto.MovimentiResponse;
-import com.example.demo.dto.MovimentoResponse;
-import com.example.demo.dto.SaldoResponse;
+import com.fabrick.demo.dto.BonificoRequest;
+import com.fabrick.demo.dto.BonificoResponse;
+import com.fabrick.demo.dto.CustomResponseEntity;
+import com.fabrick.demo.dto.MovimentiResponse;
+import com.fabrick.demo.dto.MovimentoResponse;
+import com.fabrick.demo.dto.SaldoResponse;
 
 import java.util.HashMap;
 import java.util.List;

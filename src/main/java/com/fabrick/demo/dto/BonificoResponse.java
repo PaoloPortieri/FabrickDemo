@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.fabrick.demo.dto;
 
 public class BonificoResponse {
 
