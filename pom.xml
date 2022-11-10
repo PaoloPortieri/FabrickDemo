@@ -8,13 +8,14 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.fabrick</groupId>
+	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
-	<description>Demo SpringBoot project for Fabrick</description>
+	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+<!--		<java.version>11</java.version>-->
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -33,6 +34,11 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -40,8 +46,8 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-<!-- 			<scope>test</scope> -->
-				<!-- exclude junit 4 -->
+			<scope>test</scope>
+			<!-- exclude junit 4 -->
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
@@ -65,18 +71,42 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<executions>
+						<execution>
+
+							<configuration>
+								
+								<excludes>
+									<exclude>
+										<groupId>org.projectlombok</groupId>
+										<artifactId>lombok</artifactId>
+									</exclude>
+								</excludes>
+<!--								resource filtering fine tuning:
+								<outputDirectory>${project.build.directory}/classes</outputDirectory>
+								<useDefaultDelimiters>false</useDefaultDelimiters>
+								<delimiters>
+									<delimiter>#</delimiter>
+								</delimiters>
+								<resources>
+									<resource>
+										<directory>src/main/resources/config</directory>
+										<filtering>true</filtering>
+										<includes>
+											<include>**/*.properties</include>
+										</includes>
+									</resource>
+								</resources>
+								-->
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			
 		</plugins>
 	</build>
 
