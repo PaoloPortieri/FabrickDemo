@@ -1,6 +1,7 @@
 package com.fabrick.demo.controller;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationExceptionHandler.class);
 
     
-	@ExceptionHandler (value = {BonificoException.class})
+	@ExceptionHandler (value = { BonificoException.class })
 	protected ResponseEntity<ErrorDto> bonificoException(RuntimeException ex, WebRequest request) {
     	LOG.error("Stepped into bonificoException");
     	
@@ -61,12 +62,13 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 		LOG.error("Stepped into handleMethodArgumentNotValid");
 		
 		ErrorContainer errorMessages = new ErrorContainer();
+		errorMessages.setErrorMessages(
+		(ex.getBindingResult().getAllErrors()
+				.stream()
+				.map(x -> x.getDefaultMessage())
+				.collect(Collectors.toList())));
 		
-		 for (ObjectError error : ex.getBindingResult().getAllErrors()) {
-			 errorMessages.getErrorMessages().add(error.ge);
-		 }
-		
-        return new ResponseEntity<Object>("test test test", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Object>(errorMessages, HttpStatus.BAD_REQUEST);
 	}
 	
 }
