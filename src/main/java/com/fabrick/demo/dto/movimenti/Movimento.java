@@ -1,44 +1,33 @@
 package com.fabrick.demo.dto.movimenti;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Movimento {
-	
-
-/*
- *  "list": [
-            {
-                "transactionId": "1525686714002",
-                "operationId": "20000056301225",
-                "accountingDate": "2020-03-25",
-                "valueDate": "2020-03-23",
-                "type": {
-                    "enumeration": "GBS_TRANSACTION_TYPE",
-                    "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0039"
-                },
-                "amount": -13.09,
-                "currency": "EUR",
-                "description": "ID INT. LIQUIDAZIONI PREC"
-            }
-        ]
- */
 
 	@JsonProperty(value = "transactionId")
 	private String  transactionId;
+	
 	@JsonProperty(value = "operationId")
 	private String  operationId;
+	
 	@JsonProperty(value = "accountingDate")
 	private String  accountingDate;
+	
 	@JsonProperty(value = "valueDate")
 	private String  valueDate;
+	
 	@JsonProperty(value = "type")
 	private MovimentoType  type;
+	
 	@JsonProperty(value = "amount")
-	private int  amount;
+	private BigDecimal  amount;
+	
 	@JsonProperty(value = "currency")
 	private String  currency;
+	
 	@JsonProperty(value = "description")
 	private String  description;
 
@@ -50,8 +39,8 @@ public class Movimento {
                 ", operationId='" + operationId + '\'' +
                 ", accountingDate='" + accountingDate + '\'' +
                 ", valueDate='" + valueDate + '\'' +
-//TODO          ", type='" + type + '\'' +
-                ", amount='" + amount + '\'' + //FIXME
+                ", type='" + type + '\'' +
+                ", amount='" + amount + '\'' +
                 ", currency='" + currency + '\'' +
                 ", description='" + description + '\'' +
                 '}';
@@ -117,11 +106,11 @@ public class Movimento {
 		this.type = type;
 	}
 
-	public int getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
 	}
 

@@ -45,6 +45,7 @@ public class BonificoRequest {
     private String feeAccountId;
     
     @JsonProperty(value = "taxRelief")
+    @Valid
     private TaxRelief taxRelief;
 
 }

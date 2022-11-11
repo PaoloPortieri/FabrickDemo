@@ -5,24 +5,6 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MovimentoType {
-
-	/*
-	 *  "list": [
-	            {
-	                "transactionId": "1525686714002",
-	                "operationId": "20000056301225",
-	                "accountingDate": "2020-03-25",
-	                "valueDate": "2020-03-23",
-	                "type": {
-	                    "enumeration": "GBS_TRANSACTION_TYPE",
-	                    "value": "GBS_ACCOUNT_TRANSACTION_TYPE_0039"
-	                },
-	                "amount": -13.09,
-	                "currency": "EUR",
-	                "description": "ID INT. LIQUIDAZIONI PREC"
-	            }
-	        ]
-	 */
 	
 	@JsonProperty(value = "enumeration")
 	private String enumeration;

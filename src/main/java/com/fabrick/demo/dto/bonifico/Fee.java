@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.validation.constraints.Pattern;
 
+import com.fabrick.demo.utils.RegexUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -20,7 +21,7 @@ public class Fee {
 	private String description;
 	
 	@JsonProperty(value = "amount")
-	@Pattern(regexp = "^[0-9]*$", message= "The amount value cannot contain anything other than numbers.")
+	@Pattern(regexp = RegexUtils.amountValidationRegex, message= "The amount value cannot contain anything other than numbers.")
 	private BigDecimal amount;
 	
 	@JsonProperty(value = "currency")

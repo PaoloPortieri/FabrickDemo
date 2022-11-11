@@ -4,6 +4,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fabrick.demo.utils.RegexUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Creditor {
 	
     @JsonProperty(value = "name")
-    @Pattern(regexp = "^[A-Za-z !]*$", message = "Creditor name cannot contain invalid characters.")
+    @Pattern(regexp = RegexUtils.nameValidationRegex, message = "Creditor name cannot contain invalid characters.")
     @NotNull
 	private String name;
     

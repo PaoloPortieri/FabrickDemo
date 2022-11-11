@@ -1,8 +1,10 @@
 package com.fabrick.demo.dto.bonifico;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fabrick.demo.utils.RegexUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -20,7 +22,7 @@ public class TaxRelief {
 	private boolean isCondoUpgrade;
     
     @JsonProperty(value = "creditorFiscalCode")
-    @Pattern(regexp="^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$", message= "creditorFiscalCode invalid.")
+    @Pattern(regexp = RegexUtils.fiscalCodeValidationRegex, message= "creditorFiscalCode invalid.")
     @NotNull
 	private String creditorFiscalCode;
     
@@ -29,8 +31,10 @@ public class TaxRelief {
 	private String beneficiaryType;
     
     @JsonProperty(value = "naturalPersonBeneficiary")
+    @Valid
 	private NaturalPersonBeneficiary naturalPersonBeneficiary;
     
     @JsonProperty(value = "legalPersonBeneficiary")
+    @Valid
 	private LegalPersonBeneficiary legalPersonBeneficiary;
 }
