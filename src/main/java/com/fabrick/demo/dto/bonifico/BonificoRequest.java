@@ -2,6 +2,8 @@ package com.fabrick.demo.dto.bonifico;
 
 import java.math.BigDecimal;
 
+import javax.validation.Valid;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class BonificoRequest {
 	
     @JsonProperty(value = "creditor")
+    @Valid
     private Creditor creditor;
     
     @JsonProperty(value = "executionDate")

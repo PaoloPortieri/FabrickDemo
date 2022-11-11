@@ -1,15 +1,16 @@
 package com.fabrick.demo.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class ErrorMessage {
-
+public class ErrorContainer {
 	
 	@JsonProperty(value = "statusCode")
 	private String statusCode;
@@ -17,8 +18,9 @@ public class ErrorMessage {
 	@JsonProperty(value = "timestamp")
 	private Date timestamp;
 	
-	@JsonProperty(value = "message")
-	private String message;
+	@JsonProperty(value = "errorMessages")
+	private List<String> errorMessages;
+	
 
 	public String getStatusCode() {
 		return statusCode;
@@ -36,11 +38,11 @@ public class ErrorMessage {
 		this.timestamp = timestamp;
 	}
 
-	public String getMessage() {
-		return message;
+	public List<String> getErrorMessages() {
+		return errorMessages;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setErrorMessages(List<String> errorMessages) {
+		this.errorMessages = errorMessages;
 	}
 }

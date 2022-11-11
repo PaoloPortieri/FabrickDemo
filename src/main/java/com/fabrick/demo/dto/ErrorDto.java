@@ -2,10 +2,8 @@ package com.fabrick.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor 
 public class ErrorDto {
 
@@ -17,5 +15,30 @@ public class ErrorDto {
     
     @JsonProperty(value = "params")
     private String params;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getParams() {
+		return params;
+	}
+
+	public void setParams(String params) {
+		this.params = params;
+	}
 	
+    
 }

@@ -12,29 +12,30 @@ import com.fabrick.demo.exception.SaldoException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
+@Validated
 @RequestMapping("/bank") 
-public class BankController extends ResponseEntityExceptionHandler {
+public class BankController {
     private static final Logger LOG = LoggerFactory.getLogger(BankController.class);
     
     @Value("${app.endpoints.saldoUrl}")
@@ -75,7 +76,7 @@ public class BankController extends ResponseEntityExceptionHandler {
     }
     
     @PostMapping("/bonifico")
-    public ResponseEntity<CustomResponseEntity<BonificoResponse>> getBonifico(@RequestBody BonificoRequest body){
+    public ResponseEntity<CustomResponseEntity<BonificoResponse>> getBonifico(@RequestBody @Valid BonificoRequest body){
     	
     	LOG.info("/bonifico endpoint START, forwarding call to the following url: {}", bonificoUrl);
     	ResponseEntity<CustomResponseEntity<BonificoResponse>> response = null;
