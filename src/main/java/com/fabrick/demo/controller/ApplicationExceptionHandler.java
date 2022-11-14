@@ -14,7 +14,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.fabrick.demo.dto.ErrorContainer;
-import com.fabrick.demo.dto.ErrorDto;
 import com.fabrick.demo.exception.BonificoException;
 import com.fabrick.demo.exception.MovimentiException;
 import com.fabrick.demo.exception.SaldoException;
@@ -22,36 +21,15 @@ import com.fabrick.demo.exception.SaldoException;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
     private static final Logger LOG = LoggerFactory.getLogger(ApplicationExceptionHandler.class);
-
     
-	@ExceptionHandler (value = { BonificoException.class })
-	protected ResponseEntity<ErrorDto> bonificoException(RuntimeException ex, WebRequest request) {
-    	LOG.error("Stepped into bonificoException");
+	@ExceptionHandler (value = { BonificoException.class, SaldoException.class, MovimentiException.class })
+	protected ResponseEntity<ErrorContainer> bankingException(RuntimeException ex, WebRequest request) {
+    	LOG.error("Stepped into bankingException");
     	
-    	ErrorDto error = new ErrorDto();
-    	error.setDescription(ex.getMessage());
+    	ErrorContainer errorContainer = new ErrorContainer();
+    	errorContainer.getErrorMessages().add(ex.getMessage());
     	
-        return new ResponseEntity<ErrorDto>(error, HttpStatus.BAD_REQUEST);
-	}
-	
-	@ExceptionHandler(value = { SaldoException.class })
-	protected ResponseEntity<ErrorDto> saldoException(RuntimeException ex, WebRequest request) {
-		LOG.error("Stepped into saldoException");
-
-	  	ErrorDto error = new ErrorDto();
-    	error.setDescription(ex.getMessage());
-
-		return new ResponseEntity<ErrorDto>(error, HttpStatus.BAD_REQUEST);
-	}
-
-	@ExceptionHandler(value = { MovimentiException.class })
-	protected ResponseEntity<ErrorContainer> movimentiException(RuntimeException ex, WebRequest request) {
-		LOG.error("Stepped into movimentiException");
-
-		ErrorContainer errorMessages = new ErrorContainer();
-		errorMessages.getErrorMessages().add(ex.getMessage());
-
-		return new ResponseEntity<ErrorContainer>(errorMessages, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<ErrorContainer>(errorContainer, HttpStatus.BAD_REQUEST);
 	}
 	
 	@Override
@@ -73,8 +51,6 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 				LOG.error(msg);
 			});
 		}
-		
         return new ResponseEntity<Object>(errorMessages, HttpStatus.BAD_REQUEST);
 	}
-	
 }

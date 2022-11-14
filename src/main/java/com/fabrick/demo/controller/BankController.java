@@ -106,7 +106,7 @@ public class BankController {
                     HttpMethod.POST,
                     entity,
                     new ParameterizedTypeReference<CustomResponseEntity<BonificoResponse>>(){});
-		} catch (BadRequest e) {
+		} catch (Exception e) {
 			throw new BonificoException(HttpStatus.BAD_REQUEST, "400", e.getMessage());
 		}
     	

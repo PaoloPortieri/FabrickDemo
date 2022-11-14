@@ -1,11 +1,11 @@
 package com.fabrick.demo.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 public class ErrorContainer {
 	
 	@JsonProperty(value = "statusCode")
@@ -17,6 +17,15 @@ public class ErrorContainer {
 	@JsonProperty(value = "errorMessages")
 	private List<String> errorMessages;
 	
+	public ErrorContainer() {
+		this.errorMessages = new ArrayList<>();
+	}
+
+	public ErrorContainer(String statusCode, Date timestamp, List<String> errorMessages) {
+		this.statusCode = statusCode;
+		this.timestamp = timestamp;
+		this.errorMessages = new ArrayList<>();
+	}
 
 	public String getStatusCode() {
 		return statusCode;
