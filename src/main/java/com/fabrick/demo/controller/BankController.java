@@ -29,9 +29,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.util.UriComponentsBuilder;
 
+/**
+ * Exposes three endpoints, calling three respective Fabrick Banking APIs:
+ * accounts reading (Accounts, "Saldo");
+ * wire transfer (Money Transfers, "Bonifico");
+ * transaction history ( "Movimenti")
+ */
 @RestController
 @Validated
 @RequestMapping("/bank") 
@@ -50,6 +55,10 @@ public class BankController {
     @Autowired
     RestTemplate restTemplate;
     
+    /** Exposes the endpoint /saldo which bounces the call over to Fabrick's "Accounts" API
+     * @return The SaldoResponse from the API if the request was successful; returns a SaldoException otherwise.
+     * @throws SaldoException
+     */
     @GetMapping("/saldo")
     public ResponseEntity<CustomResponseEntity<SaldoResponse>> getLetturaSaldo(){
 
@@ -75,6 +84,12 @@ public class BankController {
 
     }
     
+    /**
+     * Exposes the endpoint /bonifico which bounces the call over to Fabrick's "Money Transfers" API
+     * @param body the BonificoRequest wrapper, containing data like the creditor's and the wire transfer's.
+     * @return The BonificoResponse from the API if the request was successful; returns HTTP status 400 otherwise.
+     * @throws BonificoException
+     */
     @PostMapping("/bonifico")
     public ResponseEntity<CustomResponseEntity<BonificoResponse>> getBonifico(@RequestBody @Valid BonificoRequest body){
     	
@@ -99,6 +114,13 @@ public class BankController {
     	return response;
     }
     
+    
+    /**Exposes the endpoint /movimenti which bounces the call over to Fabrick's "Transactions" API
+     * @param fromAccountingDate the start of the search range for the transaction history (movimenti)
+     * @param toAccountingDate the end of the search range for the transaction history (movimenti)
+     * @return The MovimentiResponse from the API if the request was successful; returns HTTP status 500 otherwise.
+     * @throws MovimentiException
+     */
     @GetMapping("/movimenti")
     public ResponseEntity<CustomResponseEntity<MovimentiResponse>> getMovimenti(@RequestParam String fromAccountingDate,
     		@RequestParam String toAccountingDate){
