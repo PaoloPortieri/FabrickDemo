@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Duration;
@@ -26,16 +24,12 @@ public class RestTemplateConfiguration {
     @Value("${app.timezone}")
     private String timezone;
     
-    
-    
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
 
         return builder
                 .setConnectTimeout(Duration.ofMillis(300000))
                 .setReadTimeout(Duration.ofMillis(300000))
-//                .defaultHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                
                 .defaultHeader("X-Time-Zone", timezone)
                 .defaultHeader("Auth-Schema", authSchema)
                 .defaultHeader("Api-Key", apiKey)
@@ -47,5 +41,4 @@ public class RestTemplateConfiguration {
                 })
                 .build();
     }
-
 }

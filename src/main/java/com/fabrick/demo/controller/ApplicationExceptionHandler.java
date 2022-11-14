@@ -1,6 +1,5 @@
 package com.fabrick.demo.controller;
 
-import java.util.Date;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -8,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -37,13 +35,13 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 	}
 	
 	@ExceptionHandler(value = { SaldoException.class })
-	protected ResponseEntity<ErrorContainer> saldoException(RuntimeException ex, WebRequest request) {
+	protected ResponseEntity<ErrorDto> saldoException(RuntimeException ex, WebRequest request) {
 		LOG.error("Stepped into saldoException");
 
-		ErrorContainer errorMessages = new ErrorContainer();
-		errorMessages.getErrorMessages().add(ex.getMessage());
+	  	ErrorDto error = new ErrorDto();
+    	error.setDescription(ex.getMessage());
 
-		return new ResponseEntity<ErrorContainer>(errorMessages, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<ErrorDto>(error, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(value = { MovimentiException.class })

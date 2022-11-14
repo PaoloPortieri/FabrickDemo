@@ -35,7 +35,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Exposes three endpoints, calling three respective Fabrick Banking APIs:
  * accounts reading (Accounts, "Saldo");
  * wire transfer (Money Transfers, "Bonifico");
- * transaction history ( "Movimenti")
+ * transaction history ("Movimenti")
  */
 @RestController
 @Validated

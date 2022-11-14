@@ -2,11 +2,7 @@ package com.fabrick.demo.dto;
 
 import java.util.Date;
 import java.util.List;
-
-import org.springframework.http.HttpStatus;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

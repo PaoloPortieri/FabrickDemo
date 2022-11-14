@@ -14,11 +14,11 @@ public class CustomResponseEntity<T> {
     @JsonProperty(value = "status")
     private String status;
     @JsonProperty(value = "errors")
-    private List<ErrorDto> errors;
+    private List<ErrorContainer> errors;
     @JsonProperty(value = "payload")
     private T payload;
 
-    public CustomResponseEntity(String status, List<ErrorDto> errors, T payload) {
+    public CustomResponseEntity(String status, List<ErrorContainer> errors, T payload) {
         this.status = status;
         this.errors = errors;
         this.payload = payload;
