@@ -68,6 +68,14 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 				.map(x -> x.getDefaultMessage())
 				.collect(Collectors.toList())));
 		
+		if(!(errorMessages.getErrorMessages().isEmpty())) {
+			LOG.error("One or more invalid arguments found: ");
+			errorMessages.getErrorMessages().stream()
+			.forEach(msg -> {
+				LOG.error(msg);
+			});
+		}
+		
         return new ResponseEntity<Object>(errorMessages, HttpStatus.BAD_REQUEST);
 	}
 	
